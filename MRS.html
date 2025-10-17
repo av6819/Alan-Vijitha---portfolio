@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MR Spectroscopy - Alan D Vijitha</title>
+  <meta name="description" content="Magnetic Resonance Spectroscopy (MRS) portfolio by Alan D Vijitha — exploring advanced biomedical imaging and analysis.">
+  <meta name="keywords" content="Magnetic Resonance Spectroscopy, MR Spectroscopy, MRS, Biomedical Imaging, Alan D Vijitha">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    /* keep slide images fully visible, centered and responsive */
+    .gallery-swiper { position: relative; }
+    .gallery-swiper .swiper-wrapper { align-items: center; } /* vertical center */
+    .gallery-swiper .swiper-slide { display:flex; align-items:center; justify-content:center; flex-direction:column; }
+    .gallery-swiper .slide-img { max-width:100%; width:auto; max-height:70vh; object-fit:contain; }
+    .swiper-button-prev, .swiper-button-next { z-index: 20; }
+
+    /* Background section: center the list block and show bullets */
+    #background .container { text-align: center; }
+    #background .bg-list { 
+      list-style: disc;                 /* enable bullets */
+      padding-left: 1.25rem;           /* bullet indent */
+      margin: 0 auto;                  /* center the list block */
+      display: inline-block;           /* so the whole list is centered */
+      text-align: left;                /* keep items left-aligned within the block */
+      max-width: 800px;
+    }
+    #background .bg-list li { margin-bottom: .9rem; line-height:1.6; }
+
+    /* General spacing & readability */
+    body, p, li { line-height: 1.65; }
+    .section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .section-title { margin-bottom: 1.25rem; }
+    .section-title h2 { margin-bottom: .4rem; }
+    p.lead { margin-bottom: 1rem; font-size:1.05rem; }
+
+    /* Make standard unordered lists more readable */
+    ul { margin-bottom: 1rem; }
+    ul li { margin-bottom: .7rem; }
+
+    /* Table spacing */
+    .table th, .table td { padding: .9rem 1.25rem; vertical-align: middle; }
+
+    /* Gallery caption spacing */
+    .swiper-slide > div { margin-top: .6rem; }
+
+    /* Slightly increase footer spacing */
+    footer#footer .container { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+
+    /* Instrumentation slider: center images inside each slide */
+    .instrumentation-swiper .swiper-wrapper { align-items: center; }
+    .instrumentation-swiper .swiper-slide { display: flex, align-items: center, justify-content: center, padding: 1rem; }
+    .instrumentation-swiper .slide-img {
+      max-width: 100%;
+      width: auto;
+      max-height: 60vh;
+      object-fit: contain;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .instrumentation-swiper .swiper-button-prev,
+    .instrumentation-swiper .swiper-button-next,
+    .instrumentation-swiper .swiper-pagination { z-index: 20; }
+
+    /* Advantages table — card-like cells with subtle "bubble" hover effect */
+    #advantages .table {
+      border-collapse: separate;
+      border-spacing: 14px;
+      background: transparent;
+      width: 100%;
+    }
+    #advantages thead th {
+      background: transparent;
+      border: none;
+      color: #222;
+      font-weight: 600;
+      padding: 0.6rem 0;
+      text-align: center;
+    }
+    /* Make each cell look like a card */
+    #advantages .table td, #advantages .table th {
+      background: #ffffff;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(15,15,15,0.06);
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, filter .28s;
+      padding: .95rem 1.1rem;
+      vertical-align: middle;
+      position: relative;
+    }
+    /* Hover/focus bubble effect on each box */
+    #advantages .table td:hover,
+    #advantages .table td:focus,
+    #advantages .table th:hover,
+    #advantages .table th:focus {
+      transform: translateY(-6px) scale(1.035);
+      box-shadow: 0 20px 36px rgba(12,40,80,0.12);
+      z-index: 5;
+      cursor: default;
+      filter: saturate(1.03);
+    }
+    /* Make the three columns visually separated on wider screens */
+    @media(min-width: 768px){
+      #advantages .table thead th, #advantages .table tbody td { display: table-cell; }
+      #advantages .table tbody tr { display: table-row; }
+    }
+    /* subtle staggered reveal for rows */
+    #advantages tbody tr { opacity: 0; transform: translateY(10px); }
+    #advantages tbody tr.visible { opacity: 1; transform: translateY(0); transition: opacity .45s ease, transform .45s ease; }
+    /* ensure table looks good on small screens */
+    @media(max-width: 767px){
+      #advantages .table, #advantages .table thead, #advantages .table tbody, #advantages .table tr, #advantages .table th, #advantages .table td {
+        display: block;
+      }
+      #advantages .table thead { margin-bottom: .6rem; }
+      #advantages .table th { margin: .35rem 0; }
+      #advantages .table td { margin-bottom: .6rem; }
+    }
+
+    /* numbered pagination bullets */
+    .case-pagination .swiper-pagination-bullet {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: #f1f1f1;
+      color: #333;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin: 0 6px;
+      box-shadow: 0 6px 18px rgba(15,15,15,0.06);
+      transition: transform .24s ease, background .24s ease, color .24s ease;
+    }
+    .case-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+      background: #0d6efd;
+      color: #fff;
+      transform: scale(1.06);
+      box-shadow: 0 12px 28px rgba(13,110,253,0.16);
+    }
+    .case-swiper .swiper-slide { padding: 1.25rem; }
+
+    /* Case study images: slightly smaller and centered */
+    .case-swiper .slide-img {
+      max-width: 80%;
+      width: auto;
+      max-height: 50vh;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: contain;
+    }
+    @media (max-width: 991px) {
+      .case-swiper .slide-img { max-width: 92%; max-height: 40vh; }
+    }
+    @media (max-width: 576px) {
+      .case-swiper .slide-img { max-width: 100%; max-height: 30vh; }
+    }
+
+    /* Make Reflection render non-italic, but keep italics in References */
+    #reflection {
+      font-style: normal;
+    }
+    /* override any <em> or <i> used inside Reflection only */
+    #reflection em, #reflection i {
+      font-style: normal !important;
+      font-weight: normal !important;
+    }
+  </style>
+</head>
+
+<body class="services-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center light-background sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">Alan D Vijitha</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="MRS.html" class="active">MR Spectroscopy</a></li>
+          <li class="dropdown">
+            <a href="#">AMBI</a>
+            <ul>
+              <li><a href="arrhythmia.html">Arrhythmia Assignment</a></li>
+              <li><a href="miniproject.html">Mini Project</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="header-social-links">
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Intro Section -->
+    <section id="intro" class="section dark-background text-center">
+      <div class="container" data-aos="zoom-in">
+        <h2>Magnetic Resonance Spectroscopy (MRS)</h2>
+        <p class="lead">An advanced imaging technique that provides biochemical information from living tissue — extending beyond the capabilities of traditional MRI.</p>
+        <div class="mt-4">
+          <a href="#background" class="btn btn-light px-4 py-2 rounded-pill">Explore ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background Section -->
+    <section id="background" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Background & Evolution</h2>
+        </div>
+        <ul class="list-unstyled">
+          <li><strong>1940s — NMR discovery:</strong> Fundamental physics of nuclear magnetic resonance established.</li>
+          <li><strong>1970s–80s — MRI development:</strong> Imaging techniques adapted for anatomical contrast; paved the way for in vivo spectroscopy.</li>
+          <li><strong>1980s — First in vivo MRS:</strong> Early demonstrations detecting metabolites in human brain tissue.</li>
+          <li><strong>Localization & sequences:</strong> PRESS and STEAM voxel localization improved spatial specificity for spectra.</li>
+          <li><strong>Higher field strengths:</strong> 3T+ systems increased SNR and spectral resolution for better quantification.</li>
+          <li><strong>Clinical integration:</strong> MRS used as a metabolic biomarker tool in oncology, epilepsy, liver fat assessment, and research.</li>
+          <li><strong>Core concepts:</strong> Target nuclei (1H, 31P), Fourier transform to obtain spectra, common metabolites: NAA, Cho, Cr, lactate.</li>
+        </ul>
+      </div>
+    </section>
+
+   <!-- Image Gallery Section -->
+    <section id="gallery" class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Image Gallery</h2>
+          <p>MR Spectroscopy gallery showcasing metabolite spectra, voxel placement, and clinical imaging examples.</p>
+        </div>
+
+        <!-- Swiper slider -->
+        <div class="swiper gallery-swiper rounded-4 shadow-lg" aria-label="MRS image slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/brain.jpg" alt="Brain MRS Spectrum" class="img-fluid slide-img rounded-4">
+              <div class="mt-2 text-center"><em>Brain MRS Spectrum showing NAA, Cho, Cr</em></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/voxel.png" alt="Voxel selection" class="img-fluid slide-img rounded-4">
+              <div class="mt-2 text-center"><em>Voxel selection region for MRS acquisition</em></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/retina.jpg" alt="MRS example 2" class="img-fluid slide-img rounded-4">
+              <div class="mt-2 text-center"><em>OCT scan - layers of retina</em></div>
+            </div>
+            <div class="swiper-slide">
+              <video controls class="img-fluid slide-img rounded-4">
+                <source src="assets/videos/MRS.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="mt-2 text-center"><em>animated NMR demonstration of image acquisition</em></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/liver.jpg" alt="Liver MRS" class="img-fluid slide-img rounded-4">
+              <div class="mt-2 text-center"><em>Current application of in vitro magnetic resonance spectroscopy in hepatobiliary disease</em></div>
+            </div>
+          </div>
+          <!-- pagination / navigation -->
+          <div class="swiper-pagination mt-3"></div>
+          <div class="swiper-button-prev" aria-label="Previous slide"></div>
+          <div class="swiper-button-next" aria-label="Next slide"></div>
+        </div>
+
+        <!-- Initialize Swiper: requires assets/vendor/swiper/swiper-bundle.min.js already included -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Swiper === 'undefined') return;
+
+            // keep a reference to the Swiper instance
+            const gallerySwiper = new Swiper('.gallery-swiper', {
+              loop: true,
+              speed: 700,
+              effect: 'slide',
+              autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+              },
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+              keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+              },
+              lazy: {
+                loadPrevNext: true,
+              },
+              a11y: true,
+            });
+
+            // Pause autoplay while any video is playing; resume when paused/ended
+            const videos = document.querySelectorAll('.gallery-swiper video');
+            videos.forEach(video => {
+              video.addEventListener('play', () => {
+                try { gallerySwiper.autoplay && gallerySwiper.autoplay.stop(); } catch(e) {}
+              });
+              ['pause', 'ended'].forEach(ev => {
+                video.addEventListener(ev, () => {
+                  try { gallerySwiper.autoplay && gallerySwiper.autoplay.start(); } catch(e) {}
+                });
+              });
+              // also pause autoplay while buffering/waiting
+              video.addEventListener('waiting', () => {
+                try { gallerySwiper.autoplay && gallerySwiper.autoplay.stop(); } catch(e) {}
+              });
+              video.addEventListener('playing', () => {
+                try { gallerySwiper.autoplay && gallerySwiper.autoplay.stop(); } catch(e) {}
+              });
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+
+    <!-- Working Mechanism Section -->
+    <section id="mechanism" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Working Mechanism</h2>
+          <p>To Understand how MRS detects tissue biochemistry</p>
+        </div>
+
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6" data-aos="fade-right">
+            <p>
+              MRS operates on the same physical principles as MRI — nuclei with magnetic properties align with a magnetic field and are excited by radiofrequency pulses. However, instead of forming images, MRS measures the frequency shifts (chemical shifts) of these nuclei, which vary according to their molecular environment. The resulting signal is transformed into a spectrum using Fourier Transform, where each peak represents a metabolite concentration.
+            </p>
+            <ul>
+              <li>Localized using voxel selection (PRESS/STEAM sequences)</li>
+              <li>Detects hydrogen (¹H), phosphorus (³¹P), or carbon (¹³C) nuclei</li>
+              <li>Generates a frequency spectrum of biochemical compounds</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center" data-aos="fade-left">
+            <img src="assets/img/MRS.jpg"
+                 class="img-fluid rounded-4 shadow-lg" alt="Simplified MRS Mechanism Diagram">
+            <p class="mt-2"><em>Simplified schematic of MR Spectroscopy signal acquisition</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instrumentation Section -->
+    <section id="instrumentation" class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Instrumentation Setup</h2>
+        </div>
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-right">
+            <!-- Instrumentation slider -->
+            <div class="swiper instrumentation-swiper rounded-4 shadow-lg">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="assets/img/components.png" class="img-fluid slide-img rounded-4" alt="MRI/MRS Instrumentation Diagram">
+                </div>
+                <div class="swiper-slide">
+                  <img src="assets/img/maincomponents.jpg" class="img-fluid slide-img rounded-4" alt="Additional instrumentation view">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-prev" aria-label="Previous"></div>
+              <div class="swiper-button-next" aria-label="Next"></div>
+            </div>
+            <p class="mt-2 text-center"><em>main components of a MRS system</em></p>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <ul>
+              <li><strong>Superconducting Magnet</strong> – Provides stable main magnetic field (1.5T–7T)</li>
+              <li><strong>Gradient Coils</strong> – Allow spatial localization of spectroscopy voxel</li>
+              <li><strong>RF Coils</strong> – Transmit excitation pulses and receive emitted signals</li>
+              <li><strong>Spectrometer Console</strong> – Controls pulse sequences and frequency detection</li>
+              <li><strong>Workstation</strong> – Processes spectra, quantifies metabolite ratios</li>
+              <li><strong>RF Amplifiers & Preamps</strong> – Provide transmit power and low-noise reception for high SNR.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Advantages</h2>
+          <p>In what aspects MRS is superior to conventional MRI?</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table text-center align-middle" aria-label="Advantages comparison">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Conventional MRI</th>
+                <th scope="col">MR Spectroscopy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td tabindex="0">Information Type</td>
+                <td tabindex="0">Structural (anatomy)</td>
+                <td tabindex="0">Biochemical (metabolism)</td>
+              </tr>
+              <tr>
+                <td tabindex="0">Detection Sensitivity</td>
+                <td tabindex="0">Macroscopic tissue changes</td>
+                <td tabindex="0">Microscopic molecular changes</td>
+              </tr>
+              <tr>
+                <td tabindex="0">Diagnosis Stage</td>
+                <td tabindex="0">Visible abnormalities</td>
+                <td tabindex="0">Early metabolic/biochemical changes</td>
+              </tr>
+              <tr>
+                <td tabindex="0">Output</td>
+                <td tabindex="0">Gray-scale image</td>
+                <td tabindex="0">Spectrum with metabolite peaks</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // reveal rows with a small stagger when the section scrolls into view
+      (function(){
+        const section = document.getElementById('advantages');
+        if (!section) return;
+        const rows = section.querySelectorAll('tbody tr');
+        const obs = new IntersectionObserver((entries, o) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              rows.forEach((r, i) => setTimeout(() => r.classList.add('visible'), i * 90));
+              o.disconnect();
+            }
+          });
+        }, {threshold: 0.15});
+        obs.observe(section);
+      })();
+    </script>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Applications</h2>
+          <p>Clinical and research relevance of MR Spectroscopy</p>
+        </div>
+        <ul>
+          <li>Brain tumor grading and differentiation</li>
+          <li>Epilepsy localization and metabolic mapping</li>
+          <li>Assessment of neurodegenerative diseases (e.g., Alzheimer’s)</li>
+          <li>Oncology: Monitoring therapeutic response</li>
+          <li>Research: Understanding tissue metabolism and pharmacodynamics</li>
+          <li>Metabolic liver disease assessment: quantification of hepatic steatosis and fibrosis</li>
+          <li>Musculoskeletal metabolic studies: muscle energetics and sports medicine applications</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Future Scope Section -->
+    <section id="future" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Future Scope</h2>
+        </div>
+        <ul>
+          <li><strong>Multi‑nuclear & hyperpolarized probes</strong> — expanded use of 13C, 31P, 23Na and hyperpolarized 13C for real‑time metabolic imaging and greatly improved sensitivity.</li>
+          <li><strong>Ultra‑high field & hardware advances</strong> — 7T+ systems, improved RF coils, cryogen‑free magnets and lower-noise preamps to increase SNR and spectral resolution.</li>
+          <li><strong>Faster, robust acquisition</strong> — compressed sensing, parallel imaging, advanced localization and motion correction to shorten scan times and increase reliability.</li>
+          <li><strong>Hybrid & multi‑modal imaging</strong> — integration with PET, fMRI and MR‑fingerprinting to combine metabolic, functional and molecular information.</li>
+          <li><strong>AI/ML spectral analysis</strong> — automated peak detection, deconvolution, artifact removal and population‑scale pattern discovery for faster, reproducible quantification.</li>
+          <li><strong>Metabolic mapping & voxel mosaics</strong> — high‑resolution spatial metabolic maps across tissues (brain, liver, muscle, tumors) rather than single‑voxel measures.</li>
+        </ul>
+        <p class="mt-3"><em>Main challenges to address:</em> improving SNR and quantification, handling spectral overlap, standardizing across vendors, and reducing scan time — solutions here will unlock the broader clinical and research potential of MRS.</p>
+      </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case" class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Case Studies</h2>
+        </div>
+
+        <!-- Case study slider -->
+        <div class="swiper case-swiper rounded-4 shadow-lg">
+          <div class="swiper-wrapper">
+
+            <!-- Slide 1: Brain — Glioblastoma -->
+            <div class="swiper-slide">
+              <div class="row gy-3 align-items-center">
+                <div class="col-lg-6 text-center">
+                  <a href="assets/img/case.jpg" class="glightbox" data-gallery="case">
+                    <img src="assets/img/case.jpg" alt="Case 1 - Glioblastoma" class="img-fluid rounded-4 shadow-lg slide-img">
+                  </a>
+                </div>
+                <div class="col-lg-6">
+                  <h4 tabindex="0">Case 1 — Glioblastoma</h4>
+                  <p>
+                    86 year-old woman with new neurologic symptoms. Coronal FLAIR (A) and contrast enhanced T1 weighted images (B) demonstrate a mass in the corpus callosum and left superior frontal gyrus with multiple areas of enhancement. Spectroscopy (TE 144 ms) from the corpus callosum (C, region of white box in B) shows markedly elevated Cho (white arrow) and relatively low NAA. Spectroscopy from the area of non-enhancing tumor in the left centrum semiovale (D, black box in B) shows similar findings in the non-enhancing areas, confirming infiltrative tumor.
+                  </p>
+                  <p class="small text-muted mb-0">
+                    <strong>Source:</strong>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/33926682/" target="_blank" rel="noopener">
+                      Hsu et al., PubMed (PMID: 33926682)
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2: Liver — Hepatic steatosis -->
+            <div class="swiper-slide">
+              <div class="row gy-3 align-items-center">
+                <div class="col-lg-6 text-center">
+                    <img src="assets/img/case2.jpg" alt="Case 2 - Hepatic steatosis MRS" class="img-fluid rounded-4 shadow-lg slide-img">
+                  </a>
+                </div>
+                <div class="col-lg-6">
+                  <h4 tabindex="0">Case 2 — Metastatic brain tumor</h4>
+                  <p>
+                    A 54-year-old male presented with a 4-week history of the left arm and leg weakness and clumsiness followed by multiple seizures 2 weeks prior to admission. The patient had no past medical history or history of hereditary diseases. Physical examination was unremarkable. Neurological examination revealed left-sided weakness with no sensory deficits.
+                  </p>
+                  <p>Figure:</p>
+                  <p>Right frontal parafalcine tumor evident on T2 sagittal (A) and FLAIR axial images (B), associated with typical high choline and lipid peaks on single-voxel MR spectroscopy (C) and lack of expected enhancement on post contrast T1 sagittal image (D).</p>
+                  <p class="small text-muted mb-0">
+                    <strong>Source:</strong>
+                    <a href="https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2022.866622/full" target="_blank" rel="noopener">
+                      Frontiers in Oncology (2022) — Metastatic brain tumor case report
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- explicit numbered navigation buttons (click to go to page) -->
+          <div class="case-nav d-flex justify-content-center gap-2 mt-3" aria-label="Case study navigation">
+            <button class="btn btn-light case-nav-btn" data-slide="0" type="button">1</button>
+            <button class="btn btn-light case-nav-btn" data-slide="1" type="button">2</button>
+          </div>
+         </div>
+ 
+        <!-- Init the case swiper with numbered bullets + explicit buttons -->
+        <script>
+          (function(){
+            if (typeof Swiper === 'undefined') return;
+
+            const caseSwiper = new Swiper('.case-swiper', {
+               loop: false,
+               speed: 500,
+               slidesPerView: 1,
+               spaceBetween: 20,
+               pagination: {
+                 el: '.case-pagination',
+                 clickable: true,
+                 renderBullet: function(index, className) {
+                   return '<span class="'+className+'">'+(index + 1)+'</span>';
+                 }
+               },
+               keyboard: { enabled: true, onlyInViewport: true },
+               a11y: true
+             });
+ 
+             // hook up explicit numbered buttons
+            const navButtons = Array.from(document.querySelectorAll('.case-nav-btn'));
+            navButtons.forEach(btn => {
+              btn.addEventListener('click', () => {
+                const i = parseInt(btn.getAttribute('data-slide'), 10);
+                if (isNaN(i)) return;
+                // If swiper is looped use slideToLoop, otherwise slideTo.
+                if (caseSwiper.params.loop) {
+                  caseSwiper.slideToLoop(i, 600);
+                } else {
+                  caseSwiper.slideTo(i, 600);
+                }
+                // visual state handled in slideChange handler below
+              });
+            });
+ 
+             // update button active state on slide change
+             caseSwiper.on('slideChange', () => {
+              const idx = (typeof caseSwiper.realIndex === 'number') ? caseSwiper.realIndex : caseSwiper.activeIndex || 0;
+              navButtons.forEach(b => b.classList.toggle('active', parseInt(b.getAttribute('data-slide'),10) === idx));
+              // focus first heading or image in the visible slide for accessibility
+              const currentSlide = caseSwiper.slides[caseSwiper.activeIndex];
+              if (currentSlide) {
+                const focusable = currentSlide.querySelector('h4, img, a, button, p');
+                if (focusable && typeof focusable.focus === 'function') {
+                  focusable.focus({ preventScroll: true });
+                }
+              }
+             });
+ 
+             // set initial active button
+            setTimeout(()=> {
+              const idx = (typeof caseSwiper.realIndex === 'number') ? caseSwiper.realIndex : caseSwiper.activeIndex || 0;
+              const b = document.querySelector('.case-nav-btn[data-slide="'+idx+'"]');
+              if (b) b.classList.add('active');
+            }, 120);
+           })();
+         </script>
+         <style>
+           /* small visual for active numbered nav button */
+           .case-nav-btn.active { background:#0d6efd; color:#fff; box-shadow:0 8px 20px rgba(13,110,253,0.16); transform:scale(1.03); }
+         </style>
+       </div>
+     </section>
+
+    <!-- Reflection Section -->
+    <section id="reflection" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Reflection</h2>
+          <p>Key insights, skills gained, and next steps</p>
+        </div>
+
+        <p>
+          Studying MR Spectroscopy consolidated practical and conceptual skills across MR physics, spectral processing, and clinical interpretation. I now better appreciate how acquisition choices, shimming, and post‑processing impact spectral quality and diagnostic value.
+        </p>
+
+        <ul>
+          <li><strong>Technical skills:</strong> voxel localization (PRESS/STEAM), basic shimming, SNR optimization, and handling common artifacts.</li>
+          <li><strong>Analytical skills:</strong> spectral peak recognition (NAA, Cho, Cr, lactate), baseline correction, and quantitative reporting approaches.</li>
+          <li><strong>Clinical perspective:</strong> how metabolic biomarkers complement structural MRI for diagnosis, treatment planning, and response monitoring.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>References</h2>
+        </div>
+        <ul>
+          <li>Brown, M. A., &amp; Semelka, R. C. (2019). <em>MRI: Basic Principles and Applications</em>. <em>Wiley</em>.</li>
+          <li>Kumar, A., et al. (2023). Advances in MR Spectroscopy for Neuro‑oncology. <em>Journal of Biomedical Imaging</em>.</li>
+          <li>Kreis, R. (2016). Quality filtering based on relative Cramér–Rao lower bounds. <em>Magnetic Resonance in Medicine</em>.</li>
+          <li>Radiopaedia.org — MR Spectroscopy Overview and Case Database.</li>
+          <li>Weinberg BD, Kuruva M. (2021). Clinical Applications of Magnetic Resonance Spectroscopy in Brain Tumors: From Diagnosis to Treatment. <em>PubMed</em></li>
+          <li>Zeinali‑Rafsanjani, B., Faghihi, R., &amp; Mahdavi, S. (2017). Magnetic resonance spectroscopy and its clinical applications: A review. <em>Journal of Medical Imaging and Radiation Sciences</em>.</li>
+          <li>Kozic, D., Lasica, N., Grujicic, D., Raicevic, S., Prvulovic Bunovic, N., Nosek, I., &amp; Boban, J. (2022). Case report: Atypical solitary brain metastasis: The role of MR spectroscopy in differential diagnosis. <em>Frontiers in Oncology</em>.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="copyright text-center">
+        <p>© <span>2025</span> <strong class="px-1 sitename">Alan D Vijitha</strong> <span>All Rights Reserved</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+ 
+   <!-- Main JS -->
+   <script src="assets/js/main.js"></script>
+ 
+   <!-- Safe init: wait until Swiper is loaded, then init gallery + case swipers -->
+   <script>
+     (function initWhenReady(){
+       if (typeof Swiper === 'undefined') return setTimeout(initWhenReady, 120);
+
+       // gallery swiper (if present)
+       if (!window.gallerySwiper && document.querySelector('.gallery-swiper')) {
+         window.gallerySwiper = new Swiper('.gallery-swiper', {
+           loop: true, speed: 700, effect: 'slide',
+           autoplay: { delay: 3500, disableOnInteraction: false },
+           pagination: { el: '.swiper-pagination', clickable: true },
+           navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+           keyboard: { enabled: true, onlyInViewport: true },
+           lazy: { loadPrevNext: true }, a11y: true
+         });
+         // pause autoplay while gallery video plays
+         document.querySelectorAll('.gallery-swiper video').forEach(video=>{
+           const stop = ()=>{ try{ window.gallerySwiper.autoplay.stop(); }catch(e){} };
+           const start = ()=>{ try{ window.gallerySwiper.autoplay.start(); }catch(e){} };
+           video.addEventListener('play', stop);
+           ['pause','ended'].forEach(ev=>video.addEventListener(ev, start));
+           video.addEventListener('waiting', stop);
+           video.addEventListener('playing', stop);
+         });
+       }
+
+       // case swiper (if present)
+       if (!window.caseSwiper && document.querySelector('.case-swiper')) {
+         window.caseSwiper = new Swiper('.case-swiper', {
+           loop: false, speed: 500, slidesPerView: 1, spaceBetween: 20,
+           pagination: { el: '.case-pagination', clickable: true, renderBullet: (i, c) => '<span class="'+c+'">'+(i+1)+'</span>' },
+           keyboard: { enabled: true, onlyInViewport: true }, a11y: true
+         });
+
+         const navButtons = Array.from(document.querySelectorAll('.case-nav-btn'));
+         navButtons.forEach(btn => {
+           btn.addEventListener('click', () => {
+             const i = parseInt(btn.getAttribute('data-slide'), 10);
+             if (isNaN(i)) return;
+             if (window.caseSwiper.params.loop) window.caseSwiper.slideToLoop(i, 600);
+             else window.caseSwiper.slideTo(i, 600);
+           });
+         });
+
+         window.caseSwiper.on('slideChange', () => {
+           const idx = (typeof window.caseSwiper.realIndex === 'number') ? window.caseSwiper.realIndex : window.caseSwiper.activeIndex || 0;
+           navButtons.forEach(b => b.classList.toggle('active', parseInt(b.getAttribute('data-slide'),10) === idx));
+           const current = window.caseSwiper.slides[window.caseSwiper.activeIndex];
+           if (current) {
+             const f = current.querySelector('h4, img, a, button, p');
+             if (f && typeof f.focus === 'function') f.focus({preventScroll:true});
+           }
+         });
+
+         setTimeout(()=> {
+           const idx = (typeof window.caseSwiper.realIndex === 'number') ? window.caseSwiper.realIndex : window.caseSwiper.activeIndex || 0;
+           const b = document.querySelector('.case-nav-btn[data-slide="'+idx+'"]');
+           if (b) b.classList.add('active');
+         }, 120);
+       }
+     })();
+   </script>
+ 
+   <!-- Initialize instrumentation slider -->
+   <script>
+     (function(){
+       if (typeof Swiper === 'undefined') return;
+       new Swiper('.instrumentation-swiper', {
+         loop: true,
+         speed: 500,
+         slidesPerView: 1,
+         spaceBetween: 16,
+         pagination: { el: '.instrumentation-swiper .swiper-pagination', clickable: true },
+         navigation: {
+           nextEl: '.instrumentation-swiper .swiper-button-next',
+           prevEl: '.instrumentation-swiper .swiper-button-prev'
+         },
+         a11y: true,
+         lazy: { loadPrevNext: true }
+       });
+     })();
+   </script>
+ </body>
+ </html>
