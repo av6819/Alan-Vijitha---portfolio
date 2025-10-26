@@ -239,7 +239,7 @@
     <section id="background" class="section">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Background & Evolution</h2>
+          <h2>Evolution</h2>
         </div>
         <ul class="list-unstyled">
           <li><strong>1940s — NMR discovery:</strong> Fundamental physics of nuclear magnetic resonance established.</li>
@@ -252,8 +252,36 @@
         </ul>
       </div>
     </section>
+   
+    <!-- Working Mechanism Section -->
+    <section id="mechanism" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Working Mechanism</h2>
+          <p>To Understand how MRS detects tissue biochemistry</p>
+        </div>
 
-   <!-- Image Gallery Section -->
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6" data-aos="fade-right">
+            <p>
+              MRS operates on the same physical principles as MRI — nuclei with magnetic properties align with a magnetic field and are excited by radiofrequency pulses. However, instead of forming images, MRS measures the frequency shifts (chemical shifts) of these nuclei, which vary according to their molecular environment. The resulting signal is transformed into a spectrum using Fourier Transform, where each peak represents a metabolite concentration.
+            </p>
+            <ul>
+              <li>Localized using voxel selection (PRESS/STEAM sequences)</li>
+              <li>Detects hydrogen (¹H), phosphorus (³¹P), or carbon (¹³C) nuclei</li>
+              <li>Generates a frequency spectrum of biochemical compounds</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center" data-aos="fade-left">
+            <img src="assets/img/MRS.jpg"
+                 class="img-fluid rounded-4 shadow-lg" alt="Simplified MRS Mechanism Diagram">
+            <p class="mt-2"><em>Simplified schematic of MR Spectroscopy signal acquisition</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Gallery Section -->
     <section id="gallery" class="section light-background">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
@@ -343,35 +371,6 @@
             });
           });
         </script>
-      </div>
-    </section>
-
-
-    <!-- Working Mechanism Section -->
-    <section id="mechanism" class="section">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Working Mechanism</h2>
-          <p>To Understand how MRS detects tissue biochemistry</p>
-        </div>
-
-        <div class="row align-items-center gy-4">
-          <div class="col-lg-6" data-aos="fade-right">
-            <p>
-              MRS operates on the same physical principles as MRI — nuclei with magnetic properties align with a magnetic field and are excited by radiofrequency pulses. However, instead of forming images, MRS measures the frequency shifts (chemical shifts) of these nuclei, which vary according to their molecular environment. The resulting signal is transformed into a spectrum using Fourier Transform, where each peak represents a metabolite concentration.
-            </p>
-            <ul>
-              <li>Localized using voxel selection (PRESS/STEAM sequences)</li>
-              <li>Detects hydrogen (¹H), phosphorus (³¹P), or carbon (¹³C) nuclei</li>
-              <li>Generates a frequency spectrum of biochemical compounds</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 text-center" data-aos="fade-left">
-            <img src="assets/img/MRS.jpg"
-                 class="img-fluid rounded-4 shadow-lg" alt="Simplified MRS Mechanism Diagram">
-            <p class="mt-2"><em>Simplified schematic of MR Spectroscopy signal acquisition</em></p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -778,6 +777,7 @@
    </script>
  </body>
  </html>
+
 
 
 
